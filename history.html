@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>History Page</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="history.css">
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.3.2/dist/chart.min.js"></script>
+    <!-- History JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="history.js"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="home.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="stocks.html">Stocks</a>
+                </li>
+                <li class="nav-item">
+                    <a id="nav-link" class="nav-link active" href="history.html">History</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main content -->
+    <div class="container my-4">
+        <h1>History Page</h1>
+        <form>
+            <div class="form-group">
+                <label for="date">Enter a date:</label>
+                <input type="date" class="form-control" id="date" required>
+            </div>
+            <div class="form-group">
+                <label for="max-lines">Maximum number of lines:</label>
+                <input type="number" class="form-control" id="max-lines" min="1" max="100" value="10" required>
+            </div>
+            <button type="button" class="btn btn-primary" id="search-btn">Search</button>
+        </form>
+
+        <!-- Polygon requests table (hidden by default) -->
+        <div id="polygonRequestsTable" class="table-responsive my-4" style="display: none;">
+            <h2>Polygon Requests</h2>
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>Date & Time</th>
+                        <th>Ticker Symbol</th>
+                        <th>Request Type</th>
+                    </tr>
+                </thead>
+                <tbody id="table-body">
+                    <!-- Table rows populated by JavaScript -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Details table for Common Stock (hidden by default) -->
+        <div id="tickerDetailsCS" class="table-responsive my-4" style="display: none;">
+            <h2>Ticker Details</h2>
+            <table class="table table-striped table-bordered">
+                <tbody>
+                    <tr>
+                        <th>Name</th>
+                        <td id="tickerName"></td>
+                    </tr>
+                    <tr>
+                        <th>Description</th>
+                        <td id="tickerDescription"></td>
+                    </tr>
+                    <tr>
+                        <th>Address</th>
+                        <td id="tickerAddress"></td>
+                    </tr>
+                    <tr>
+                        <th>Phone</th>
+                        <td id="tickerPhone"></td>
+                    </tr>
+                    <tr>
+                        <th>Market Cap</th>
+                        <td id="tickerMarketCap"></td>
+                    </tr>
+                    <tr>
+                        <th>Homepage</th>
+                        <td id="tickerHomepage"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Details table for other type of stock (hidden by default) -->
+        <div id="tickerDetailsOther" class="table-responsive my-4" style="display: none;">
+            <h2>Ticker Details</h2>
+            <table class="table table-striped table-bordered">
+                <tbody>
+                    <tr>
+                        <th>Name</th>
+                        <td id="tickerName"></td>
+                    </tr>
+                    <tr>
+                        <th>Type</th>
+                        <td id="tickerType"></td>
+                    </tr>
+                    <tr>
+                        <th>Market</th>
+                        <td id="tickerMarket"></td>
+                    </tr>
+                    <tr>
+                        <th>Primary Exchange</th>
+                        <td id="tickerExchange"></td>
+                    </tr>
+                    <tr>
+                        <th>List Date</th>
+                        <td id="tickerListDate"></td>
+                    </tr>
+                    <tr>
+                        <th>Shares Outstanding</th>
+                        <td id="tickerSharesOutstanding"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Closing price chart (hidden by default) -->
+        <div id="closingPriceChart" class="my-4" style="display: none;">
+            <h3>Closing Prices (Last 7 Days)</h3>
+            <canvas id="closing-prices" width="400" height="400"></canvas>
+        </div>
+
+        <!-- News articles (hidden by default) -->
+        <div id="news-articles" class="my-4" style="display: none">
+            <h3>News Articles</h3>
+            <div class="table-wrapper">
+                <table id="news-table">
+                    <thead>
+                        <tr>
+                            <th>Publisher</th>
+                            <th>Title</th>
+                            <th>Author</th>
+                            <th>Date Published</th>
+                            <th>Article URL</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Table rows populated by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"
+        integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

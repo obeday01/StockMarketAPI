@@ -1,0 +1,135 @@
+body {
+    background: linear-gradient(#FFFACD, rgba(185, 187, 64, 0.7));
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.container {
+    margin-top: 50px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 48px;
+    margin-bottom: 30px;
+    color: #264c59;
+    animation: wave 2s infinite;
+}
+
+@keyframes wave {
+    0% {
+        transform: translateY(0);
+    }
+
+    25% {
+        transform: translateY(-10px);
+    }
+
+    50% {
+        transform: translateY(0);
+    }
+
+    75% {
+        transform: translateY(10px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+form {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+form label {
+    display: block;
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #264c59;
+}
+
+#closing-prices {
+    width: 500px !important;
+    height: 500px !important;
+    margin: 0 auto;
+}
+
+/* Adjust graph size for smaller screens */
+@media (max-width: 768px) {
+    #closing-prices {
+        width: 453px !important;
+        height: 453px !important;
+        margin: 0 auto;
+    }
+}
+
+form button:hover {
+    background-color: #264c59;
+    color: #FFFACD;
+}
+
+#news-table,
+#tickerDetailsCS,
+#tickerDetailsOther {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#news-table th,
+#news-table td,
+#tickerDetailsCS th,
+#tickerDetailsCS td,
+#tickerDetailsOther th,
+#tickerDetailOther td {
+    border: 3px solid rgba(141, 139, 140, 0.45);
+    padding: 10px;
+    text-align: left;
+}
+
+#polygonRequestsTable td,
+#polygonRequestsTable th {
+    border: 1px solid rgb(255, 255, 255);
+    padding: 10px;
+    text-align: left;
+}
+
+#news-table th,
+#tickerDetailsCS th,
+#tickerDetailsOther th,
+#polygonRequestsTable th {
+    background-color: #33333340;
+}
+
+#search-btn:hover {
+    background-color: #8f841e;
+    border-color: #8f841e;
+}
+
+#search-btn {
+    background-color: #c7b729;
+    border-color: #c7b729;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: #264c59;
+}
+
+.navbar-dark .navbar-nav .nav-link.active {
+    background-color: #c7b729;
+    padding: 8px;
+    border-radius: 10px;
+}
+
+.navbar-dark {
+    background-color: #FFFACD;
+}
+
+.navbar {
+    background: linear-gradient(to bottom right, #FFFACD, #F5DEB3);
+}
+
+.navbar-toggler-icon {
+    background-color: #d3ca78;
+}
